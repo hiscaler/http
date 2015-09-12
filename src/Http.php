@@ -33,7 +33,7 @@ class Http
      * @param string $method
      * @param array $data
      */
-    private function _outputLog($url, $method, $data = [])
+    private function _outputLog($url, $method, $data = array())
     {
         $line = str_repeat('#', 80) . "</br>";
         echo $line;
