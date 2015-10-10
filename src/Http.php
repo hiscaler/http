@@ -94,7 +94,7 @@ class Http
         $queryString = '';
         if (is_string($params)) {
             $queryString = $params;
-        } else if (is_array($params) && $params) {
+        } elseif (is_array($params) && $params) {
             $queryString = http_build_query($params);
         }
         if (!empty($queryString)) {
