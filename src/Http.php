@@ -10,13 +10,37 @@ namespace yadjet\http;
 class Http
 {
 
+    /**
+     * Access url prefix.
+     * @var string
+     */
     public $apiUrl;
+
+    /**
+     * Auth user id, if need.
+     * @var string
+     */
     public $authUserId;
+
+    /**
+     * Auth user password, if need.
+     * @var strubg
+     */
     public $authPassword;
+
+    /**
+     * Default headers
+     * @var array
+     */
     public $httpHeaders = array(
         'Accept: application/json',
         'Content-Type: application/json',
     );
+
+    /**
+     * If set it to true, will output the log message.
+     * @var boolean
+     */
     public $debug = false;
 
     public function __construct($apiUrl, $authUserId = null, $authPassword = null)
