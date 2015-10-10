@@ -11,10 +11,10 @@ class Http
 {
 
     /**
-     * Access url prefix.
+     * Access endpoint url.
      * @var string
      */
-    public $apiUrl;
+    public $endpointUrl;
 
     /**
      * Auth user id, if need.
@@ -43,9 +43,9 @@ class Http
      */
     public $debug = false;
 
-    public function __construct($apiUrl, $authUserId = null, $authPassword = null)
+    public function __construct($endpointUrl, $authUserId = null, $authPassword = null)
     {
-        $this->apiUrl = $apiUrl;
+        $this->endpointUrl = $endpointUrl;
         $this->authUserId = $authUserId;
         $this->authPassword = $authPassword;
     }
@@ -90,7 +90,7 @@ class Http
      */
     public function get($url, $params = null)
     {
-        $url = $this->apiUrl . $url;
+        $url = $this->endpointUrl . $url;
         $queryString = '';
         if (is_string($params)) {
             $queryString = $params;
@@ -136,7 +136,7 @@ class Http
      */
     public function post($url, $params, $isFile = false)
     {
-        $url = $this->apiUrl . $url;
+        $url = $this->endpointUrl . $url;
         $params = $isFile ? $params : (is_string($params) ? $params : http_build_query($params));
         $curl = curl_init();
         if (stripos($url, 'https://') !== false) {
@@ -175,7 +175,7 @@ class Http
      */
     public function put($url, $data = array())
     {
-        $url = $this->apiUrl . $url;
+        $url = $this->endpointUrl . $url;
         $curl = curl_init();
         if (stripos($url, 'https://') !== false) {
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -217,7 +217,7 @@ class Http
      */
     public function delete($url)
     {
-        $url = $this->apiUrl . $url;
+        $url = $this->endpointUrl . $url;
         $curl = curl_init();
         if (stripos($url, 'https://') !== false) {
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
