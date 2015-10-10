@@ -112,7 +112,7 @@ class Http
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $this->httpHeaders);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         if (!empty($this->authUserId) && !empty($this->authPassword)) {
             curl_setopt($curl, CURLOPT_USERPWD, "{$this->authUserId}:{$this->authPassword}");
         }
@@ -146,7 +146,7 @@ class Http
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $this->httpHeaders);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         if (!empty($this->authUserId) && !empty($this->authPassword)) {
             curl_setopt($curl, CURLOPT_USERPWD, "{$this->authUserId}:{$this->authPassword}");
         }
