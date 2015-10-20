@@ -72,6 +72,12 @@ class Http
         echo $line;
     }
 
+    /**
+     * Parse curl response content
+     * @param string $status
+     * @param array $content
+     * @return string
+     */
     private function _parseCurlResponse($status, $content)
     {
         if ($content === false) {
@@ -85,8 +91,8 @@ class Http
      *  GET Request
      * 
      * @param string $url
-     * @param mixed $params
-     * @return boolean
+     * @param array|mixed $params
+     * @return string
      */
     public function get($url, $params = null)
     {
@@ -123,6 +129,7 @@ class Http
         if ($this->debug) {
             $this->_outputLog($url, __FUNCTION__);
         }
+
         return $this->_parseCurlResponse($status, $content);
     }
 
