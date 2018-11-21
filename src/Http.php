@@ -12,19 +12,22 @@ class Http
 
     /**
      * Access endpoint url.
+     *
      * @var string
      */
     public $endpointUrl;
 
     /**
      * Auth user id, if need.
+     *
      * @var string
      */
     public $authUserId;
 
     /**
      * Auth user password, if need.
-     * @var strubg
+     *
+     * @var string
      */
     public $authPassword;
 
@@ -39,6 +42,7 @@ class Http
 
     /**
      * If set it to true, will output the log message.
+     *
      * @var boolean
      */
     public $debug = false;
@@ -52,7 +56,7 @@ class Http
 
     /**
      * Output log
-     * 
+     *
      * @param string $url
      * @param string $method
      * @param array $data
@@ -74,6 +78,7 @@ class Http
 
     /**
      * Parse curl response content
+     *
      * @param string $status
      * @param array $content
      * @return string
@@ -89,7 +94,7 @@ class Http
 
     /**
      *  GET Request
-     * 
+     *
      * @param string $url
      * @param array|mixed $params
      * @return string
@@ -135,7 +140,7 @@ class Http
 
     /**
      * POST Request
-     * 
+     *
      * @param string $url
      * @param array $params
      * @param boolean $isFile
@@ -175,7 +180,7 @@ class Http
 
     /**
      * PUT Request
-     * 
+     *
      * @param string $url
      * @param array $data
      * @return string
@@ -218,7 +223,7 @@ class Http
 
     /**
      * Delete Request
-     * 
+     *
      * @param string $url
      * @return string
      */
