@@ -10,6 +10,8 @@ namespace yadjet\http;
 class Http
 {
 
+    private $_headers = array();
+
     /**
      * Access endpoint url.
      *
@@ -30,15 +32,6 @@ class Http
      * @var string
      */
     public $authPassword;
-
-    /**
-     * Default headers
-     * @var array
-     */
-    public $httpHeaders = array(
-        'Accept: application/json',
-        'Content-Type: application/json',
-    );
 
     /**
      * If set it to true, will output the log message.
@@ -93,6 +86,39 @@ class Http
     }
 
     /**
+     * 设置 headers
+     *
+     * @param $name
+     * @param $value
+     * @return $this
+     */
+    public function setHeader($name, $value)
+    {
+        $this->_headers[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * 获取所有 header
+     *
+     * @return array
+     */
+    public function getHeaders()
+    {
+        if ($this->_headers) {
+            $headers = [];
+            foreach ($this->_headers as $name => $value) {
+                $headers[] = "$name: $value";
+            }
+
+            return $headers;
+        } else {
+            return array();
+        }
+    }
+
+    /**
      *  GET Request
      *
      * @param string $url
@@ -122,7 +148,7 @@ class Http
         }
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->httpHeaders);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->getHeaders());
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         if (!empty($this->authUserId) && !empty($this->authPassword)) {
             curl_setopt($curl, CURLOPT_USERPWD, "{$this->authUserId}:{$this->authPassword}");
@@ -157,7 +183,7 @@ class Http
         }
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->httpHeaders);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->getHeaders());
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         if (!empty($this->authUserId) && !empty($this->authPassword)) {
             curl_setopt($curl, CURLOPT_USERPWD, "{$this->authUserId}:{$this->authPassword}");
@@ -198,7 +224,7 @@ class Http
         fseek($putData, 0);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->httpHeaders);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->getHeaders());
         curl_setopt($curl, CURLOPT_BINARYTRANSFER, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
@@ -240,7 +266,7 @@ class Http
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->httpHeaders);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->getHeaders());
         if (!empty($this->authUserId) && !empty($this->authPassword)) {
             curl_setopt($curl, CURLOPT_USERPWD, "{$this->authUserId}:{$this->authPassword}");
         }
